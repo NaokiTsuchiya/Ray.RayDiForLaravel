@@ -22,7 +22,8 @@
     ],
     "require": {
         "php": ">=8.0",
-        "ray/di": "^2.14"
+        "ray/di": "^2.14",
+        "ray/compiler": "^1.7"
     },
     "require-dev": {
         "laravel/framework": "^9.8",

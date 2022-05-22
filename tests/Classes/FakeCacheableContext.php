@@ -4,25 +4,37 @@ declare(strict_types=1);
 
 namespace Ray\RayDiForLaravel\Classes;
 
+use Doctrine\Common\Cache\CacheProvider;
+use Ray\Compiler\AbstractInjectorContext;
+use Ray\Compiler\DiCompileModule;
 use Ray\Di\AbstractModule;
-use Ray\RayDiForLaravel\AbstractContext;
+use Ray\RayDiForLaravel\LocalCacheProvider;
 
-class FakeCacheableContext extends AbstractContext
+class FakeCacheableContext extends AbstractInjectorContext
 {
-    protected string $fromBasePath = 'tmp';
+    public function __construct(string $tmpDir)
+    {
+        $dir = str_replace('\\', '_', self::class);
+        parent::__construct($tmpDir . '/tmp/' . $dir);
+    }
 
     public function getModule(): AbstractModule
     {
-        return new Module();
-    }
+        $module = new Module();
+        $module->install(new DiCompileModule(true));
 
-    public function isCacheable(): bool
-    {
-        return true;
+        return $module;
     }
 
     public function getSavedSingleton(): array
     {
         return [GreetingInterface::class];
+    }
+
+    public function getCache(): CacheProvider
+    {
+        $namespace = str_replace('\\', '_', $this::class);
+
+        return LocalCacheProvider::create($namespace, $this->tmpDir . '/injector');
     }
 }

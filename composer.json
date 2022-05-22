@@ -30,7 +30,7 @@
         "php": ">=8.0",
         "ray/di": "^2.14",
         "ray/compiler": "dev-context",
-        "doctrine/cache": "^2.1",
+        "doctrine/cache": "^1.10 || ^2.2",
         "symfony/cache": "^5.4 || ^6.0"
     },
     "require-dev": {

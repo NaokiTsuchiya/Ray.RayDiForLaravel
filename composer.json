@@ -20,16 +20,10 @@
             "email": "akihito.koriyama@gmail.com"
         }
     ],
-    "repositories": [
-      {
-        "type": "vcs",
-        "url": "https://github.com/koriym/Ray.Compiler"
-      }
-    ],
   "require": {
         "php": ">=8.0",
         "ray/di": "^2.14",
-        "ray/compiler": "dev-context",
+        "ray/compiler": "1.x-dev",
         "doctrine/cache": "^1.10 || ^2.2",
         "symfony/cache": "^5.4 || ^6.0"
     },

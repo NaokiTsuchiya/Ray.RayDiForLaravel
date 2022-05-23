@@ -12,6 +12,7 @@ final class Module extends AbstractModule
 {
     protected function configure(): void
     {
+        $this->bind(FakeInterface::class)->toNull();
         $this->bind(GreetingInterface::class)->to(RayGreeting::class)->in(Scope::SINGLETON);
         $this->bindInterceptor(
             $this->matcher->any(),
